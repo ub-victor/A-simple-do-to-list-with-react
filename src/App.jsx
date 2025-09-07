@@ -5,8 +5,6 @@ import "./styles.css";
 export default function App() {
   const [todos, setTodos] = useState ([])
 
-  
-
   function toggleTodo(id, completed){
     setTodos(currentTodos =>{
       return currentTodos.map(todo =>{
@@ -25,7 +23,7 @@ export default function App() {
   }
   return (
     <>
-      
+      <NewTodoForm/>
       <h1 className="header">Todo List</h1>
       <ul className="list">
         {todos.length ===0 && 'No Todos'}
