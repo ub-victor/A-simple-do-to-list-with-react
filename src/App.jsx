@@ -62,9 +62,11 @@ export default function App() {
                 {todo.title}
               </label>
           <button
-            
+            onChange={()=> deleteTodo(todo.id)}
             className="btn btn-danger"
-          >Delete</button>
+          >
+            Delete
+          </button>
         </li>
           )
         })}
