@@ -53,7 +53,7 @@ The value stored is always a string, so we do JSON.stringify(todos). */
   }
   return (
     <>
-      <NewTodoForm onSubmit={addTodo}/>
+      <NewTodoForm onSubmit={addTodo}/> 
       <h1 className="header">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
 
