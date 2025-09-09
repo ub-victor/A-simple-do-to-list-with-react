@@ -4,17 +4,27 @@ import "./styles.css";
 import { TodoList } from "./TodoList";
 
 export default function App() {
-  const [todos, setTodos] = useState (()=>{
-    const localValue = localStorage.getItem('ITEMS')
-    if(localValue == null) return []
-    
-    return JSON.parse(localValue)
+  const [todos, setTodos] = useState(() =>{
+    try {
+      const localValue = localStorage.getItem("ITEMS")
+      return localValue == null ? [] : JSON.parse(localValue)
+    }catch (err) {
+      console.error('Faile to load todos from localStorage', err)
+      return []
+    }
   })
 
-  useEffect(()=>{
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
-  }, [todos])
+  /*localStorage.setItem("ITEMS", ...) creates (or overwrites) the key "ITEMS".
 
+The value stored is always a string, so we do JSON.stringify(todos). */
+
+  useEffect(()=> {
+    try {
+      localStorage.setItem("ITEMS", JSON.stringify(todos))
+    } catch (err) {
+      console.error("Failed to save todos to localStorage", err)
+    }
+  }, [todos])
 
   function addTodo(title){
     setTodos(currentTodos => {
